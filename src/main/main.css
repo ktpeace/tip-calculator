@@ -10,4 +10,6 @@
 
 .main-div {
   background-color: #fff;
+  display: flex;
+  border-radius: 12px;
 }
