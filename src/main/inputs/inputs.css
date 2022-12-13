@@ -1,3 +1,147 @@
-.button-active{
-    border: 2px solid red;
+/* TODO: Make inputs cursor start at right side on click */
+
+/* ENTIRE COMPONENT */
+.inputs {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 35px;
+}
+
+input {
+  width: 90%;
+  color: hsl(183, 100%, 15%);
+  text-align: right;
+  font-size: 24px;
+}
+
+h2 {
+  color: hsl(186, 14%, 43%);
+  margin-bottom: 7px;
+}
+
+.input-div {
+  background-color: hsl(189, 41%, 97%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid transparent;
+  height: 35px;
+  padding: 2px 5px;
+}
+
+.input-div:focus-within {
+  border: 2px solid hsl(172, 67%, 45%);
+}
+
+.input-field {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  font-family: "Space Mono", monospace;
+  font-weight: 700;
+}
+
+/* BILL */
+.bill-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bill-label {
+  min-width: 90%;
+  text-align: left;
+}
+
+.bill-input-div {
+  width: 90%;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* TIP */
+.tip-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tip-label {
+  min-width: 90%;
+  text-align: left;
+}
+
+.tip-selection-div {
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 13px;
+}
+
+.tip-button {
+  height: 40px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background-color: hsl(183, 100%, 15%);
+  color: #fff;
+  font-family: "Space Mono", monospace;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.button-active {
+  background-color: hsl(173, 61%, 77%);
+  color: hsl(183, 100%, 15%);
+}
+
+.tip-input {
+  height: 40px;
+  width: 100%;
+  outline: none;
+  background-color: hsl(189, 41%, 97%);
+  border: 2px solid transparent;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-family: "Space Mono", monospace;
+  font-weight: 700;
+}
+
+.tip-input:focus-within {
+  border: 2px solid hsl(172, 67%, 45%);
+}
+
+/* PEOPLE */
+
+.people-div-text {
+  display: flex;
+  justify-content: space-between;
+  min-width: 90%;
+  text-align: left;
+}
+
+.zero-warning {
+  color: red;
+  font-size: 0.8rem;
+}
+
+.people-zero {
+  border: 2px solid red;
+}
+
+.people-zero:focus-within {
+  border: 2px solid red;
+}
+
+.people-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.people-input-div {
+  width: 90%;
+  border-radius: 5px;
+  box-sizing: border-box;
 }

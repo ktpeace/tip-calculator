@@ -9,6 +9,7 @@ const Main = () => {
   const [billTotal, setBillTotal] = useState(0);
   const [tipAmount, setTipAmount] = useState(0);
   const [numPeople, setNumPeople] = useState(0);
+  const [customTip, setCustomTip] = useState(0);
 
   return (
     <div className="main-div">
@@ -19,6 +20,8 @@ const Main = () => {
         setTipAmount={setTipAmount}
         numPeople={numPeople}
         setNumPeople={setNumPeople}
+        customTip={customTip}
+        setCustomTip={setCustomTip}
       />
       <Outputs
         billTotal={billTotal}
@@ -27,6 +30,7 @@ const Main = () => {
         setTipAmount={setTipAmount}
         numPeople={numPeople}
         setNumPeople={setNumPeople}
+        setCustomTip={setCustomTip}
       />
     </div>
   );

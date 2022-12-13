@@ -1,15 +1,24 @@
-/* - Strong cyan: hsl(172, 67%, 45%)
-
-### Neutral
-
-- Very dark cyan: hsl(183, 100%, 15%)
-- Dark grayish cyan: hsl(186, 14%, 43%)
-- Grayish cyan: hsl(184, 14%, 56%)
-- Very light grayish cyan: hsl(189, 41%, 97%)
-- White: hsl(0, 0%, 100%) */
+/* TODO: Add media queries, fix width on large viewports, little tablet issues & stack on mobile */
 
 .main-div {
   background-color: #fff;
   display: flex;
+  gap: 25px;
   border-radius: 12px;
+  min-width: 50%;
+  min-height: 50%;
+  padding: 25px;
+}
+
+.main-subbox {
+  padding: 10px 5px;
+}
+
+h2 {
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.hover:hover {
+  cursor: pointer;
 }

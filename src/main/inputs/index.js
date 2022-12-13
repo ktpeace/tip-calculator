@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./inputs.css";
 
 const Bill = ({ billTotal, setBillTotal }) => {
@@ -11,12 +11,12 @@ const Bill = ({ billTotal, setBillTotal }) => {
 
     // if amount is currently 0, then we only want to accept 1-9
     // test againt the firstVal regExp and if passes, set amount to the number parsed from the string
-    if(billTotal === 0 && firstVal.test(event.key)){
+    if (billTotal === 0 && firstVal.test(event.key)) {
       setBillTotal(parseInt(event.key));
     }
     // if amount is more than 0, we can accept any digit 0-9
     // parse the number from the string & then multiply amount by 10 and add the new number to put it as the last digit
-    else if(nextVal.test(event.key)){
+    else if (nextVal.test(event.key)) {
       setBillTotal((prevAmount) => {
         return prevAmount * 10 + parseInt(event.key);
       });
@@ -24,24 +24,27 @@ const Bill = ({ billTotal, setBillTotal }) => {
 
     // if key press was backspace we need to remove the last digit
     // divide previous amount by 10 to move decimal back one place, then floor to drop the decimal off the end
-    else if(event.key === 'Backspace'){
+    else if (event.key === "Backspace") {
       setBillTotal((prevAmount) => {
-        return Math.floor(prevAmount/10);
+        return Math.floor(prevAmount / 10);
       });
     }
-  }
+  };
 
   // dummy change handler to prevent React warning of controlled input not having change handler
   const billChangeHandler = () => {};
 
   // we need to show billTotal string divided by 100 for dollars/cents & without $
-  const valueString = (billTotal/100).toLocaleString('en-US', {style: 'currency', currency: 'USD',});
+  const valueString = (billTotal / 100).toLocaleString("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
   const valueWithoutSymbol = valueString.slice(1);
 
   return (
     <div className="bill-div">
       <h2 className="bill-label">Bill</h2>
-      <div className="bill-input-div">
+      <div className="bill-input-div input-div hover">
         <svg xmlns="http://www.w3.org/2000/svg" width="11" height="17">
           <path
             fill="#9EBBBD"
@@ -54,18 +57,23 @@ const Bill = ({ billTotal, setBillTotal }) => {
           value={valueWithoutSymbol}
           onKeyDown={handleBillKeyDown}
           onChange={billChangeHandler}
-          className="input-field"
+          className="input-field hover"
         />
       </div>
     </div>
   );
 };
 
-const Tip = ({ tipAmount, setTipAmount, billTotal }) => {
+const Tip = ({
+  tipAmount,
+  setTipAmount,
+  billTotal,
+  customTip,
+  setCustomTip,
+}) => {
   const tipList = [5, 10, 15, 25, 50];
 
   // custom tip will always be user input in cents, need to divide by 100 to get dollars for use
-  const [customTip, setCustomTip] = useState(0);
 
   // if we listen for key presses event.key will have the value of whatever key the user pressed
   // we will build our amount with each new number the user adds being pushed onto the right hand side
@@ -75,27 +83,27 @@ const Tip = ({ tipAmount, setTipAmount, billTotal }) => {
 
     // if amount is currently 0, then we only want to accept 1-9
     // test againt the firstVal regExp and if passes, set amount to the number parsed from the string
-    if(customTip === 0 && firstVal.test(event.key)){
+    if (customTip === 0 && firstVal.test(event.key)) {
       let incomingNum = parseInt(event.key);
       setCustomTip(incomingNum);
-      setTipAmount(() => incomingNum/100);
+      setTipAmount(() => incomingNum / 100);
     }
     // if amount is more than 0, we can accept any digit 0-9
     // parse the number from the string & then multiply amount by 10 and add the new number to put it as the last digit
-    else if(nextVal.test(event.key)){
+    else if (nextVal.test(event.key)) {
       let newNum = customTip * 10 + parseInt(event.key);
       setCustomTip(newNum);
-      setTipAmount(newNum/100);
+      setTipAmount(newNum / 100);
     }
 
     // if key press was backspace we need to remove the last digit
     // divide previous amount by 10 to move decimal back one place, then floor to drop the decimal off the end
-    else if(event.key === 'Backspace'){
-      let newNum = Math.floor(customTip/10);
+    else if (event.key === "Backspace") {
+      let newNum = Math.floor(customTip / 10);
       setCustomTip(newNum);
-      setTipAmount(newNum/100);
+      setTipAmount(newNum / 100);
     }
-  }
+  };
 
   // dummy change handler to prevent React warning of controlled input not having change handler
   const customTipChangeHandler = () => {};
@@ -103,14 +111,26 @@ const Tip = ({ tipAmount, setTipAmount, billTotal }) => {
   // update tipAmount, set customTip back to 0
   const onTipButtonClick = (event) => {
     const percent = event.target.value / 100;
-    const tip = (billTotal/100) * percent;
+    const tip = (billTotal / 100) * percent;
     setTipAmount(tip);
     setCustomTip(0);
   };
 
   // we need to show customTip string divided by 100 for dollars/cents & without $
-  const valueString = (customTip/100).toLocaleString('en-US', {style: 'currency', currency: 'USD',});
-  const valueWithoutSymbol = valueString.slice(1);
+  const valueStringHelper = () => {
+    if (customTip === 0) {
+      return "";
+    } else {
+      return (customTip / 100)
+        .toLocaleString("en-US", {
+          style: "currency",
+          currency: "USD",
+        })
+        .slice(1);
+    }
+  };
+
+  const valueWithoutSymbol = valueStringHelper();
 
   return (
     <div className="tip-div">
@@ -119,13 +139,12 @@ const Tip = ({ tipAmount, setTipAmount, billTotal }) => {
         {tipList.map((num) => {
           // if button value corresponds to currently active tipAmount this variable will be true (used for applying active class below)
           let activeAmount =
-            Number(billTotal) !== 0 && (billTotal / 100) * (num / 100) === tipAmount;
+            Number(billTotal) !== 0 &&
+            (billTotal / 100) * (num / 100) === tipAmount;
 
           return (
             <button
-              // change below to ${activeAmount && "button-active"}
-              // React docs: "In practice, returning null from a component isn't as common because it might surprise a developer trying to render it."
-              className={`tip-button ${activeAmount ? "button-active" : null}`}
+              className={`tip-button hover ${activeAmount && "button-active"}`}
               key={`tip-${num}`}
               value={num}
               onClick={onTipButtonClick}
@@ -136,11 +155,11 @@ const Tip = ({ tipAmount, setTipAmount, billTotal }) => {
         })}
         <input
           type="text"
-          placeholder="0.00"
+          placeholder="Custom"
           value={valueWithoutSymbol}
           onChange={customTipChangeHandler}
           onKeyDown={handleCustomTipKeyDown}
-          className="tip-input"
+          className="tip-input hover"
         />
       </div>
     </div>
@@ -148,7 +167,7 @@ const Tip = ({ tipAmount, setTipAmount, billTotal }) => {
 };
 
 const People = ({ numPeople, setNumPeople }) => {
-// if we listen for key presses event.key will have the value of whatever key the user pressed
+  // if we listen for key presses event.key will have the value of whatever key the user pressed
   // we will build our amount with each new number the user adds being pushed onto the right hand side
   const handlePeopleKeyDown = (event) => {
     let firstVal = /[1-9]/;
@@ -156,39 +175,43 @@ const People = ({ numPeople, setNumPeople }) => {
 
     // if amount is currently 0, then we only want to accept 1-9
     // test againt the firstVal regExp and if passes, set amount to the number parsed from the string
-    if(numPeople === 0 && firstVal.test(event.key)){
+    if (numPeople === 0 && firstVal.test(event.key)) {
       let incomingNum = parseInt(event.key);
       setNumPeople(incomingNum);
     }
     // if amount is more than 0, we can accept any digit 0-9
     // parse the number from the string & then multiply amount by 10 and add the new number to put it as the last digit
-    else if(nextVal.test(event.key)){
+    else if (nextVal.test(event.key)) {
       let newNum = numPeople * 10 + parseInt(event.key);
       setNumPeople(newNum);
     }
 
     // if key press was backspace we need to remove the last digit
     // divide previous amount by 10 to move decimal back one place, then floor to drop the decimal off the end
-    else if(event.key === 'Backspace'){
-      let newNum = Math.floor(numPeople/10);
+    else if (event.key === "Backspace") {
+      let newNum = Math.floor(numPeople / 10);
       setNumPeople(newNum);
     }
-  }
+  };
 
   // dummy change handler to prevent React warning of controlled input not having change handler
   const peopleChangeHandler = () => {};
-
+  const isPeopleZero = numPeople === 0;
   return (
     <div className="people-div">
-      <div>
+      <div className="people-div-text">
         <h2 className="people-label">Number of People</h2>
-        {!numPeople ? (
+        {isPeopleZero ? (
           <span className="zero-warning">Can't be zero</span>
         ) : (
           <span></span>
         )}
       </div>
-      <div className="people-input-div">
+      <div
+        className={`people-input-div input-div hover ${
+          isPeopleZero && "people-zero"
+        }`}
+      >
         <svg xmlns="http://www.w3.org/2000/svg" width="13" height="16">
           <path
             fill="#9EBBBD"
@@ -201,7 +224,7 @@ const People = ({ numPeople, setNumPeople }) => {
           value={numPeople}
           onKeyDown={handlePeopleKeyDown}
           onChange={peopleChangeHandler}
-          className="input-field"
+          className="input-field hover"
         />
       </div>
     </div>
@@ -215,6 +238,8 @@ const Inputs = ({
   setTipAmount,
   numPeople,
   setNumPeople,
+  customTip,
+  setCustomTip,
 }) => {
   return (
     <div className="inputs main-subbox">
@@ -223,6 +248,8 @@ const Inputs = ({
         tipAmount={tipAmount}
         setTipAmount={setTipAmount}
         billTotal={billTotal}
+        customTip={customTip}
+        setCustomTip={setCustomTip}
       />
       <People numPeople={numPeople} setNumPeople={setNumPeople} />
     </div>

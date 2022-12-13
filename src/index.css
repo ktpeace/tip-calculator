@@ -2,4 +2,12 @@ body {
   background-color: hsl(185, 41%, 84%);
   font-family: "Space Mono", monospace;
   font-weight: 700;
+  box-sizing: border-box;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
