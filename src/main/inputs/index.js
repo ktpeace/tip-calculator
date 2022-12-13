@@ -61,6 +61,8 @@ const Tip = ({ tipAmount, setTipAmount, billTotal }) => {
 
           return (
             <button
+              // change below to ${activeAmount && "button-active"}
+              // React docs: "In practice, returning null from a component isn't as common because it might surprise a developer trying to render it."
               className={`tip-button ${activeAmount ? "button-active" : null}`}
               key={`tip-${num}`}
               value={num}
