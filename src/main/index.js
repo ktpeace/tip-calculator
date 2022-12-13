@@ -5,7 +5,8 @@ import Outputs from "./outputs";
 
 const Main = () => {
   // states etc.
-  const [billTotal, setBillTotal] = useState("");
+  // NOTE - billTotal will hold number entered by user which will be in cents, need to / by 100 for dollars
+  const [billTotal, setBillTotal] = useState(0);
   const [tipAmount, setTipAmount] = useState(0);
   const [numPeople, setNumPeople] = useState(0);
 
