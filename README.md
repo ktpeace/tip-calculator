@@ -4,7 +4,7 @@
 
 ## Live Site
 
-🧾 [Tip Calculator](https://ktpeace.github.io/tip-calculator/)
+[🧾 Tip Calculator](https://ktpeace.github.io/tip-calculator/)
 
 ## Team
 
