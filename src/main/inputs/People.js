@@ -6,22 +6,25 @@ const People = ({ numPeople, setNumPeople }) => {
         let firstVal = /[1-9]/;
         let nextVal = /[0-9]/;
 
+        let value = numPeople;
+
         // if amount is currently 0, then we only want to accept 1-9
         if (numPeople === 0 && firstVal.test(event.key)) {
-            let incomingNum = parseInt(event.key);
-            setNumPeople(incomingNum);
+            value = parseInt(event.key);
         }
+
         // if amount is more than 0, we can accept any digit 0-9
-        else if (nextVal.test(event.key)) {
-            let newNum = numPeople * 10 + parseInt(event.key);
-            setNumPeople(newNum);
+        // only allow adding if numPeople is 2 digits or less (no more than 3 digit people)
+        else if (nextVal.test(event.key) && numPeople.toString().length <= 2) {
+            value = numPeople * 10 + parseInt(event.key);
         }
 
         // if key press was backspace we need to remove the last digit
         else if (event.key === "Backspace") {
-            let newNum = Math.floor(numPeople / 10);
-            setNumPeople(newNum);
+            value = Math.floor(numPeople / 10);
         }
+
+        setNumPeople(value);
     };
 
     // dummy change handler to prevent React warning of controlled input not having change handler

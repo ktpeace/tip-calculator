@@ -14,25 +14,26 @@ const Tip = ({
       let firstVal = /[1-9]/;
       let nextVal = /[0-9]/;
 
+      let value = customTip;
+
       // if amount is currently 0, then we only want to accept 1-9
       if (customTip === 0 && firstVal.test(event.key)) {
-        let incomingNum = parseInt(event.key);
-        setCustomTip(incomingNum);
-        setTipAmount(() => incomingNum / 100);
+        value = parseInt(event.key);
       }
+
       // if amount is more than 0, we can accept any digit 0-9
-      else if (nextVal.test(event.key)) {
-        let newNum = customTip * 10 + parseInt(event.key);
-        setCustomTip(newNum);
-        setTipAmount(newNum / 100);
+      // only allow adding if custom tip is 4 digits or less (no more than 5 digit tips)
+      else if (nextVal.test(event.key) && customTip.toString().length <= 4) {
+        value = customTip * 10 + parseInt(event.key);
       }
 
       // if key press was backspace we need to remove the last digit
       else if (event.key === "Backspace") {
-        let newNum = Math.floor(customTip / 10);
-        setCustomTip(newNum);
-        setTipAmount(newNum / 100);
+        value = Math.floor(customTip / 10);
       }
+
+      setCustomTip(value);
+      setTipAmount(value / 100);
     };
 
     // dummy change handler to prevent React warning of controlled input not having change handler
@@ -55,8 +56,7 @@ const Tip = ({
           .toLocaleString("en-US", {
             style: "currency",
             currency: "USD",
-          })
-          .slice(1);
+          });
       }
     };
     const valueWithoutSymbol = valueStringHelper();

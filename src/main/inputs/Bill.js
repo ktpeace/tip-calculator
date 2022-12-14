@@ -6,24 +6,25 @@ const Bill = ({ billTotal, setBillTotal }) => {
       let firstVal = /[1-9]/;
       let nextVal = /[0-9]/;
 
+      let value = billTotal;
+
       // if amount is currently 0, then we only want to accept 1-9
       if (billTotal === 0 && firstVal.test(event.key)) {
-        setBillTotal(parseInt(event.key));
+        value = parseInt(event.key);
       }
 
       // if amount is more than 0, we can accept any digit 0-9
-      else if (nextVal.test(event.key)) {
-        setBillTotal((prevAmount) => {
-          return prevAmount * 10 + parseInt(event.key);
-        });
+      // only allow adding if bill total is 5 digits or less (no more than 6 digit bills)
+      else if (nextVal.test(event.key) && billTotal.toString().length <= 5) {
+        value = billTotal * 10 + parseInt(event.key);
       }
 
       // if key press was backspace we need to remove the last digit
       else if (event.key === "Backspace") {
-        setBillTotal((prevAmount) => {
-          return Math.floor(prevAmount / 10);
-        });
+        value = Math.floor(billTotal / 10);
       }
+
+      setBillTotal(value);
     };
 
     // dummy change handler to prevent React warning of controlled input not having change handler
