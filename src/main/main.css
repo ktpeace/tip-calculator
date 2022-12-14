@@ -1,17 +1,18 @@
-/* TODO: Add media queries, fix width on large viewports, little tablet issues & stack on mobile */
-
+/* APP WIDE STYLES */
 .main-div {
   background-color: #fff;
   display: flex;
   gap: 25px;
+  min-width: 45%;
+  margin: 0 75px;
   border-radius: 12px;
-  min-width: 50%;
   min-height: 50%;
   padding: 25px;
 }
 
 .main-subbox {
   padding: 10px 5px;
+  width: 50%;
 }
 
 h2 {
@@ -21,4 +22,36 @@ h2 {
 
 .hover:hover {
   cursor: pointer;
+}
+
+/* ALL MEDIA QUERIES */
+@media screen and (max-width: 849px){
+  .main-div{
+    width: 50%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .main-subbox{
+    min-width: 90%;
+    min-height: 300px;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .main-div{
+    width: 75%;
+    max-width: 80%;
+    margin: 0 20px !important;
+    padding: 10px 10px 18px 10px;
+  }
+
+  .inputs{
+    width: 100%;
+  }
+
+  .tip-input {
+    font-size: 1rem !important;
+  }
 }
