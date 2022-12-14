@@ -4,7 +4,7 @@
 
 ## Live Site
 
-to be added
+[Tip Calculator](https://ktpeace.github.io/tip-calculator/) 🍝
 
 ## Team
 
@@ -45,9 +45,9 @@ to be added
 2. `cd` into project directory in bash/command line
 3. `npm install` to install dependencies
 4. `npm start` to run the app in development mode
-    - Open http://localhost:3000 to view it in your browser
-    - The page will reload when you make changes
-    - You may also see any lint errors in the console
+   - Open http://localhost:3000 to view it in your browser
+   - The page will reload when you make changes
+   - You may also see any lint errors in the console
 
 ## Acknowledgements
 
