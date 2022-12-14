@@ -40,8 +40,10 @@ h3 {
 }
 
 .people-num {
+  min-width: 210px;
+  text-align: right;
   color: hsl(172, 67%, 45%);
-  font-size: 35px;
+  font-size: 33px;
 }
 
 .reset-button {

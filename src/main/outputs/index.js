@@ -35,7 +35,7 @@ const Outputs = ({
   const resetHandler = () => {
     setBillTotal(0);
     setTipAmount(0);
-    setNumPeople(0);
+    setNumPeople(1);
     setCustomTip(0);
   };
 

@@ -4,11 +4,11 @@ import Inputs from "./inputs";
 import Outputs from "./outputs";
 
 const Main = () => {
-  // states etc.
-  // NOTE - billTotal will hold number entered by user which will be in cents, need to / by 100 for dollars
+  // NOTE - billTotal & customTip will hold number entered by user in cents, need to / by 100 for dollars
+  // tipAmount and numPeople are their true values already
   const [billTotal, setBillTotal] = useState(0);
   const [tipAmount, setTipAmount] = useState(0);
-  const [numPeople, setNumPeople] = useState(0);
+  const [numPeople, setNumPeople] = useState(1);
   const [customTip, setCustomTip] = useState(0);
 
   return (
