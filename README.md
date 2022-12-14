@@ -10,7 +10,7 @@ to be added
 
 🦉 [Aubrey Finkelstein](https://github.com/a-fink)
 
-🐈‍⬛ [Katherine Peace](https://github.com/ktpeace)
+🐈‍ [Katherine Peace](https://github.com/ktpeace)
 
 ## Features
 
@@ -21,14 +21,17 @@ to be added
 
 ## Built with
 
-- React - page framework and all components
-- Create React App - library used for project setup with a customized template
-- HTML5 - as JSX within React
-- CSS - styling and media breakpoints for responsive design
-- JavaScript - conditional logic, mapping within React elements, etc.
-- Google Fonts - custom fonts library
-- Git / GitHub - version control across a distributed team
-- Github Pages - live site hosting
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) - page framework and all components
+
+![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) - as JSX within React
+
+![CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white) - styling and media breakpoints for responsive design
+
+![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E) - conditional logic, mapping within React elements, etc.
+
+![Git](https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white) ![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white) - version control across a distributed team
+
+![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white) - live site hosting
 
 ## Ideal Future Improvements
 
@@ -40,12 +43,11 @@ to be added
 
 1. Clone from Github
 2. `cd` into project directory in bash/command line
-3. Run `npm install` to install dependencies
-4. Run `npm start` to run site with React
-
-- Open http://localhost:3000 to view it in your browser
-- The page will reload when you make changes
-- You may also see any lint errors in the console
+3. `npm install` to install dependencies
+4. `npm start` to run the app in development mode
+    - Open http://localhost:3000 to view it in your browser
+    - The page will reload when you make changes
+    - You may also see any lint errors in the console
 
 ## Acknowledgements
 
