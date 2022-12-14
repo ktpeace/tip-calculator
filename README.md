@@ -8,8 +8,9 @@ to be added
 
 ## Team
 
-[Aubrey Finkelstein](https://github.com/a-fink)
-[Katherine Peace](https://github.com/ktpeace)
+🦉 [Aubrey Finkelstein](https://github.com/a-fink)
+
+🐈‍⬛ [Katherine Peace](https://github.com/ktpeace)
 
 ## Features
 
