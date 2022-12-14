@@ -1,6 +1,4 @@
-/* TODO: Make inputs cursor start at right side on click */
-
-/* ENTIRE COMPONENT */
+/* ALL INPUT COMPONENTS STYLES */
 .inputs {
   display: flex;
   flex-direction: column;
@@ -105,7 +103,7 @@ h2 {
   box-sizing: border-box;
   font-family: "Space Mono", monospace;
   font-weight: 700;
-  font-size: 1.23rem;
+  font-size: 1.22rem;
 }
 
 .tip-input:focus-within {
@@ -113,7 +111,6 @@ h2 {
 }
 
 /* PEOPLE */
-
 .people-div-text {
   display: flex;
   justify-content: space-between;
